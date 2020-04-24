@@ -303,7 +303,7 @@ RCT_EXPORT_METHOD(showImagePicker:(NSDictionary *)options callback:(RCTResponseS
             }
             
             if (!originalImage) {
-                NSLog(@"Error cannot get originalImage")
+                NSLog(@"Error cannot get originalImage");
                 self.callback(@[@{@"error": @"Image not found"}]);
                 return;
             }
