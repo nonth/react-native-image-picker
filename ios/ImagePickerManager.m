@@ -301,6 +301,12 @@ RCT_EXPORT_METHOD(showImagePicker:(NSDictionary *)options callback:(RCTResponseS
             else {
                 originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
             }
+            
+            if (!originalImage) {
+                NSLog(@"Error cannot get originalImage")
+                self.callback(@[@{@"error": @"Image not found"}]);
+                return;
+            }
 
             if (imageURL) {
                 PHAsset *pickedAsset;
