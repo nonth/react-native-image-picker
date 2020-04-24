@@ -341,7 +341,10 @@ RCT_EXPORT_METHOD(showImagePicker:(NSDictionary *)options callback:(RCTResponseS
 
                     if (![[self.options objectForKey:@"noData"] boolValue]) {
                         NSString *dataString = [data base64EncodedStringWithOptions:0];
-                        [gifResponse setObject:dataString forKey:@"data"];
+                        
+                        if (!dataString) {
+                            [gifResponse setObject:dataString forKey:@"data"];
+                        }
                     }
 
                     NSURL *fileURL = [NSURL fileURLWithPath:path];
@@ -389,7 +392,10 @@ RCT_EXPORT_METHOD(showImagePicker:(NSDictionary *)options callback:(RCTResponseS
 
             if (![[self.options objectForKey:@"noData"] boolValue]) {
                 NSString *dataString = [data base64EncodedStringWithOptions:0]; // base64 encoded image string
-                [self.response setObject:dataString forKey:@"data"];
+                
+                if (!dataString) {
+                    [self.response setObject:dataString forKey:@"data"];
+                }
             }
 
             BOOL vertical = (editedImage.size.width < editedImage.size.height) ? YES : NO;
